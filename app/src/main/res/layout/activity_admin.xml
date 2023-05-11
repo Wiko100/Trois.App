@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Hasna"
+        android:textSize="28dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/button_add_staff"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/button3"
+        android:drawableRight="@drawable/add_staf"
+        android:text="Add Staff"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/button_add_stock"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button3"
+        android:drawableRight="@drawable/add_stok"
+        android:text="Add Stock"
+        android:textSize="20dp" />
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:src="@drawable/add_stok"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"/>
+
+    <EditText
+        android:id="@+id/editNameItem"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Enter Name Item"
+        android:textColorHint="@color/color_base"/>
+    <EditText
+        android:id="@+id/editItemId"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Enter Item ID"
+        android:textColorHint="@color/color_base"/>
+    <EditText
+        android:id="@+id/editTypeItem"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Type Item"
+        android:textColorHint="@color/color_base"/>
+    <EditText
+        android:id="@+id/editQuantity"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Enter Quantity to Add"
+        android:textColorHint="@color/color_base"/>
+
+    <Button
+        android:id="@+id/button_stock"
+        android:background="@drawable/button1"
+        android:textColor="@color/white"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Add Stock"
+        android:textSize="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center" />
+
+</LinearLayout>

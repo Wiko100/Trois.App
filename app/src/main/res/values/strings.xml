@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TROIS</string>
+    <string name="button_new_user">New User? Register Here</string>
+    <string name="button_member">Already a Member? Login Here</string>
+    <string name="admin">Admin Login</string>
+    <string name="staff">Staff Login</string>
+    <string name="account">Create Account</string>
+</resources>

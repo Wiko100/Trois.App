@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "811448104812",
+    "project_id": "trois-cfa63",
+    "storage_bucket": "trois-cfa63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811448104812:android:a0885bc8e2c8bdf4686549",
+        "android_client_info": {
+          "package_name": "com.example.troisapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811448104812-6c0aqonbknfau5d94meiqnn4brjim7tu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpOCKyNRVhwUXZd7E_XN_QHe9jJjrQDYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811448104812-6c0aqonbknfau5d94meiqnn4brjim7tu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
