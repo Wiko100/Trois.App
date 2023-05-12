@@ -15,6 +15,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,6 +30,8 @@ public class Staff extends AppCompatActivity {
     Boolean valid = true;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
+    public static final String TAG = "LoginStaff";
+    private DatabaseReference mDatabase;
 
 
     @Override
@@ -67,15 +74,19 @@ public class Staff extends AppCompatActivity {
     }
 
     private void checkUserLevel(String uid) {
-        DocumentReference df = firebaseFirestore.collection("Users").document(uid);
-        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        mDatabase.child(uid).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.d("TAG", "onSucces" + documentSnapshot.getData());
-
-                if (documentSnapshot.getString("isStaff") != null) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Users users = snapshot.getValue(Users.class);
+                Log.i(TAG, "Get collection users success " + users.getEmail()+" role:"+users.getRole());
+                if ("staff".equals(users.getRole())) {
                     startActivity(new Intent(getApplicationContext(), InterfaceStaff.class));
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

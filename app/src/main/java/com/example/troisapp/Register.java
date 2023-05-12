@@ -89,7 +89,7 @@ public class Register extends Activity {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
-                                                        Toast.makeText(Register.this, "Registrasi Berhasil !!, Please Check your email for verification", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Register.this, "Registrasi Berhasil", Toast.LENGTH_SHORT).show();
                                                         startActivity(new Intent(Register.this, Category.class));
                                                         finish();
                                                     } else {

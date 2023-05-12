@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,7 +33,8 @@ public class AddStock extends AppCompatActivity {
     Button btnAddStock;
     Boolean valid = true;
     FirebaseAuth firebaseAuth;
-    FirebaseFirestore firebaseFirestore;
+    FirebaseFirestore firebaseFirestore;public static final String TAG = "AddStock";
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +51,10 @@ public class AddStock extends AppCompatActivity {
         btnAddStock = findViewById(R.id.button_stock);
 
 
-
-
         btnAddStock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(AddStaff.this, "Add Data Stock Succes", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getApplicationContext(), Admin.class));
-//                finish();
+//
 
                 checkField(nama);
                 checkField(item);
@@ -64,17 +67,31 @@ public class AddStock extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                            Toast.makeText(AddStock.this, "Account Created", Toast.LENGTH_SHORT).show();
-                            DocumentReference df = firebaseFirestore.collection("Users").document(firebaseUser.getUid());
-                            Map<String, Object> staffInfo = new HashMap<>();
-                            staffInfo.put("Nama Stock", nama.getText().toString());
-                            staffInfo.put("Item Stock", item.getText().toString());
+                            Log.i(TAG, "sign in success " + nama.getText().toString() + " uid:" + authResult.getUser().getUid());
+                            Toast.makeText(AddStock.this, "Add Stock succes", Toast.LENGTH_SHORT).show();
+                            checkUserLevel(authResult.getUser().getUid());
 
-                            staffInfo.put("isStock", "2");
-                            df.set(staffInfo);
-
-                            startActivity(new Intent(getApplicationContext(), Admin.class));
+                            startActivity(new Intent(getApplicationContext(), ProductList.class));
                             finish();
+                        }
+
+                        private void checkUserLevel(String uid) {
+                            mDatabase = FirebaseDatabase.getInstance().getReference("Product");
+                            mDatabase.child(uid).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    GetSetProduct product = snapshot.getValue(GetSetProduct.class);
+                                    Log.i(TAG, "Get collection product success " + product.getproduct() + " role:" + product.getRole());
+                                    if ("stock".equals(product.getRole())) {
+                                        startActivity(new Intent(getApplicationContext(), ProductList.class));
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -85,8 +102,6 @@ public class AddStock extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     public boolean checkField (EditText textField) {

@@ -10,6 +10,18 @@ public class GetSetProduct implements Parcelable {
     String product;
     String description;
     String price;
+    String role;
+
+    public String getproduct() {
+        return product;
+    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public GetSetProduct(String picture, String product, String description, String price) {
         this.picture = picture;
