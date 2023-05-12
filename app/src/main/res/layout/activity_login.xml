@@ -12,8 +12,8 @@
         android:layout_marginTop="100dp"/>
 
     <EditText
-        android:id="@+id/editUsername"
-        android:drawableLeft="@drawable/username"
+        android:id="@+id/editEmail"
+        android:drawableLeft="@drawable/email"
         android:drawablePadding="10dp"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:layout_gravity="center"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="username"
+        android:hint="email"
         android:textColorHint="@color/color_base"/>
     <EditText
         android:id="@+id/editPassword"
@@ -37,7 +37,7 @@
         android:textColorHint="@color/color_base"/>
 
     <Button
-        android:id="@+id/button_user_login"
+        android:id="@+id/button_user"
         android:background="@drawable/button1"
         android:textColor="@color/white"
         android:layout_width="250dp"

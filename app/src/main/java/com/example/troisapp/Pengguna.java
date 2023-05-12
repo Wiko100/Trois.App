@@ -4,9 +4,6 @@ public class Pengguna {
     public String email, password;
     private String key;
 
-    public Pengguna() {
-    }
-
     public Pengguna(String email, String password) {
         this.email = email;
         this.password = password;
@@ -35,4 +32,5 @@ public class Pengguna {
     public void setKey(String key) {
         this.key = key;
     }
+
 }
