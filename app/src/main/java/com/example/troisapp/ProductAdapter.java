@@ -10,27 +10,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.ktx.Firebase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
-    private Context mContext;
-    private List<GetSetProduct> mGetSetProduct;
-
-    public ProductAdapter(Context context, List<GetSetProduct> getSetProduct){
-        this.mContext = context;
-        this.mGetSetProduct = getSetProduct;
-    }
-
+public class ProductAdapter extends FirebaseRecyclerAdapter<GetSetProduct, ProductAdapter.ViewHolder> {
     private ListItemClickListener mListener;
 
-    public interface ListItemClickListener{
-        public void onListItemClick(View v, int position);
+    public ProductAdapter(@NonNull FirebaseRecyclerOptions<GetSetProduct> options){
+        super(options);
     }
 
-    public void setListener(ListItemClickListener listener){
-        this.mListener = listener;
+    @Override
+    protected void onBindViewHolder(@NonNull ProductAdapter.ViewHolder holder, int position, @NonNull GetSetProduct model) {
+        Glide.with(holder.mProdPict.getContext())
+                .load(model.getPicture())
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.mProdPict);
+
+        holder.mProdName.setText(model.getProduct());
+        holder.mPrice.setText(model.getPrice());
     }
 
     @NonNull
@@ -41,24 +46,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return new ViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder holder, int position) {
-        GetSetProduct itemsRV = mGetSetProduct.get(position);
-
-//        Picasso.Builder builder = new Picasso.Builder(mContext);
-//        builder.build().load(itemsRV.getPicture())
-//                .placeholder(R.drawable.ic_launcher_background)
-//                .error(R.drawable.ic_launcher_foreground)
-//                .into(holder.mProdPict);
-
-        holder.mProdName.setText(itemsRV.getProduct());
-        holder.mPrice.setText(itemsRV.getPrice());
+    public interface ListItemClickListener{
+        public void onListItemClick(View v, int position);
     }
 
-    @Override
-    public int getItemCount() {
-        return mGetSetProduct.size();
+    public void setListener(ListItemClickListener listener){
+        this.mListener = listener;
     }
+
+//    @Override
+//    public int getItemCount() {
+//        return mGetSetProduct.size();
+//    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

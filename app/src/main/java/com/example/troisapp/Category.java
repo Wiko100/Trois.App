@@ -13,6 +13,7 @@ public class Category extends AppCompatActivity implements View.OnClickListener{
     ImageButton electronic;
     ImageButton book;
     ImageButton makeup;
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +34,32 @@ public class Category extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.button_clothing){
+            this.type = "Produk/Clothing";
             Intent intent = new Intent(Category.this, ProductList.class);
             startActivity(intent);
         }else if(view.getId() == R.id.button_electronic){
+            this.type = "electronic";
             Intent intent = new Intent(Category.this, ProductList.class);
             startActivity(intent);
         }else if(view.getId() == R.id.button_book){
+            this.type = "book";
             Intent intent = new Intent(Category.this, ProductList.class);
             startActivity(intent);
         }else if(view.getId() == R.id.button_makeup){
+            this.type = "makeup";
             Intent intent = new Intent(Category.this, ProductList.class);
             startActivity(intent);
+        }
+    }
+
+    public String getType(){
+        if(this.type == "clothing"){
+            return "Produk/Clothing";
+        }
+        else if(this.type == "electronic"){
+            return "Produk/Elektronik";
+        }else{
+            return this.type;
         }
     }
 }

@@ -12,15 +12,16 @@ public class GetSetProduct implements Parcelable {
     String price;
     String role;
 
-    public String getproduct() {
-        return product;
-    }
-    public String getRole() {
-        return role;
-    }
+//    public String getproduct() {
+//        return product;
+//    }
+
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public GetSetProduct() {
     }
 
     public GetSetProduct(String picture, String product, String description, String price) {
@@ -81,6 +82,9 @@ public class GetSetProduct implements Parcelable {
         this.description = description;
     }
 
+    public String getRole() {
+        return role;
+    }
     @Override
     public int describeContents() {
         return 0;
