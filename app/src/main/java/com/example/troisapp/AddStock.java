@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,7 @@ public class AddStock extends AppCompatActivity {
     EditText nama, item, tipe, jumlah;
     ImageView imageViewProduct;
     Uri imageUri;
-    Button btnAddStock;
+    Button btnAddStock,btnaddimage;
     Boolean valid = true;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;public static final String TAG = "AddStock";
@@ -57,6 +58,23 @@ public class AddStock extends AppCompatActivity {
         tipe = findViewById(R.id.editTypeItem);
         jumlah = findViewById(R.id.editQuantity);
         btnAddStock = findViewById(R.id.button_stock);
+        btnaddimage = findViewById(R.id.button_add_image);
+
+        btnaddimage.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View v) {
+                                               getimage();
+                                           }
+
+                                           private void getimage() {
+                                               Intent imageIntentGallery = new Intent(Intent.ACTION_PICK,
+                                                       MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                               startActivityForResult(imageIntentGallery, 2);
+
+
+                                           }
+                                       });
+
 
 
         btnAddStock.setOnClickListener(new View.OnClickListener() {
