@@ -79,7 +79,7 @@ public class Staff extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Users users = snapshot.getValue(Users.class);
-                Log.i(TAG, "Get collection users success " + users.getEmail()+" role:"+users.getRole());
+//                Log.i(TAG, "Get collection users success " + users.getEmail()+" role:"+users.getRole());
                 if ("staff".equals(users.getRole())) {
                     startActivity(new Intent(getApplicationContext(), InterfaceStaff.class));
                 }

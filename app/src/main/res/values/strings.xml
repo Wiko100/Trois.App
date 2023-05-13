@@ -5,4 +5,10 @@
     <string name="admin">Admin Login</string>
     <string name="staff">Staff Login</string>
     <string name="account">Create Account</string>
+    <string-array name="category">
+        <item>Clothing</item>
+        <item>Elektronik</item>
+        <item>Book</item>
+        <item>Makeup</item>
+    </string-array>
 </resources>
