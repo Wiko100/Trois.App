@@ -1,6 +1,7 @@
 package com.example.troisapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,11 @@ import java.util.List;
 
 public class ProductAdapter extends FirebaseRecyclerAdapter<GetSetProduct, ProductAdapter.ViewHolder> {
     private ListItemClickListener mListener;
+    Context context;
 
-    public ProductAdapter(@NonNull FirebaseRecyclerOptions<GetSetProduct> options){
+    public ProductAdapter(@NonNull FirebaseRecyclerOptions<GetSetProduct> options, @NonNull Context context){
         super(options);
+        this.context = context;
     }
 
     @Override
@@ -36,6 +39,19 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<GetSetProduct, Produ
 
         holder.mProdName.setText(model.getProduct());
         holder.mPrice.setText(model.getPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductDetails.class);
+                intent.putExtra("prodPict", model.getPicture());
+                intent.putExtra("prodTitle", model.getProduct());
+                intent.putExtra("prodDesc", model.getDescription());
+                intent.putExtra("prodPrice", model.getPrice());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @NonNull
@@ -53,11 +69,6 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<GetSetProduct, Produ
     public void setListener(ListItemClickListener listener){
         this.mListener = listener;
     }
-
-//    @Override
-//    public int getItemCount() {
-//        return mGetSetProduct.size();
-//    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

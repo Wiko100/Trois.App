@@ -12,11 +12,6 @@ public class GetSetProduct implements Parcelable {
     String price;
     String role;
 
-//    public String getproduct() {
-//        return product;
-//    }
-
-
     public void setRole(String role) {
         this.role = role;
     }

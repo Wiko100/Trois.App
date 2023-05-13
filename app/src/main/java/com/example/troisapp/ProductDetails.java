@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 public class ProductDetails extends AppCompatActivity {
@@ -19,22 +20,22 @@ public class ProductDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-//        prodPict = findViewById(R.id.details_prod_pict);
+        prodPict = findViewById(R.id.details_prod_pict);
         prodName = findViewById(R.id.details_title_prod);
         prodDesc = findViewById(R.id.details_prod_desc);
         prodPrice = findViewById(R.id.details_prod_price);
 
         Bundle data = getIntent().getExtras();
-        GetSetProduct club = data.getParcelable("product");
+        GetSetProduct product = data.getParcelable("product");
 
-//        Picasso.Builder builder = new Picasso.Builder(this);
-//        builder.build().load(club.getPicture())
-//                .placeholder(R.drawable.ic_launcher_background)
-//                .error(R.drawable.ic_launcher_foreground)
-//                .into(prodPict);
-        prodName.setText(club.getProduct());
-        prodDesc.setText(club.getDescription());
-        prodPrice.setText(club.getPrice());
+        Glide.with(ProductDetails.this)
+                .load(data.getString("prodPict"))
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(prodPict);
+        prodName.setText(data.getString("prodTitle"));
+        prodDesc.setText(data.getString("prodDesc"));
+        prodPrice.setText(data.getString("prodPrice"));
 
     }
 }
